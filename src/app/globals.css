@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --color-canvas: var(--bg-canvas);
+  --color-surface: var(--bg-surface);
+  --color-paper: var(--bg-paper);
+  --color-charcoal: var(--text-primary);
+  --color-muted: var(--text-secondary);
+  --color-soft-gray: var(--text-muted);
+  --color-border-warm: var(--border-subtle);
+  --color-border-strong: var(--border-strong);
+  --color-forest: var(--accent-text);
+  --color-forest-hover: var(--accent-hover);
+  --color-forest-subtle: var(--accent-subtle);
+  --color-btn-primary: var(--btn-primary-bg);
+  --color-btn-primary-hover: var(--btn-primary-hover);
+  --color-btn-primary-text: var(--btn-primary-fg);
+
+  --font-serif: var(--font-editorial), Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-sans: var(--font-body), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+:root {
+  color-scheme: light;
+  --bg-canvas: #F5F8F9;
+  --bg-surface: #E9F0F3;
+  --bg-paper: #FFFFFF;
+  --text-primary: #101B1F;
+  --text-secondary: #364950;
+  --text-muted: #4B6068;
+  --border-subtle: #D5E0E5;
+  --border-strong: #B3C6CE;
+  --accent-text: #13687E;
+  --accent-hover: #0E5062;
+  --accent-subtle: #E1F1F6;
+  --btn-primary-bg: #146B82;
+  --btn-primary-hover: #0E5062;
+  --btn-primary-fg: #F7FBFC;
+}
+
+html.dark {
+  color-scheme: dark;
+  --bg-canvas: #0A1216;
+  --bg-surface: #101D23;
+  --bg-paper: #14242C;
+  --text-primary: #EEF6F8;
+  --text-secondary: #B4C8D0;
+  --text-muted: #88A3AE;
+  --border-subtle: #1E343E;
+  --border-strong: #2C4B59;
+  --accent-text: #4CC3E6;
+  --accent-hover: #6FD1EE;
+  --accent-subtle: #132C36;
+  --btn-primary-bg: #177791;
+  --btn-primary-hover: #1E91B0;
+  --btn-primary-fg: #F7FBFC;
+}
+
+html {
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  scroll-behavior: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+body {
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: var(--btn-primary-bg);
+  color: #F7FBFC;
+}
+
+/* Accessible visible keyboard focus ring */
+:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 3px;
+}
+
+/* Hide scrollbars on horizontal filter toolbars while retaining keyboard/touch scroll */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Lenis smooth scroll recommended CSS rules */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Tactile tailoring stitch border utility */
+.stitch-rule {
+  background-image: linear-gradient(to right, var(--border-strong) 50%, transparent 50%);
+  background-size: 10px 1px;
+  background-repeat: repeat-x;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
